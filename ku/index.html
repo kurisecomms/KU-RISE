@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>KU RISE</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>
+    <img src="K.png" alt="KU RISE Logo" class="logo">
+  </h1>
+  <nav>
+    <a href="index.html">เกี่ยวกับพรรค</a>
+    <a href="links.html">เว็บของมอ</a>
+  </nav>
+</header>
+
+<section class="comment-section">
+  <h2>ส่งความคิดเห็นถึงเรา</h2>
+
+  <div class="comment-box">
+    <input id="comment" class="comment-input" placeholder="พิมพ์ความคิดเห็นที่นี่...">
+    <button class="send-btn" onclick="sendComment()">➜</button>
+  </div>
+
+  <p id="status"></p>
+</section>
+
+
+<section>
+  <h2>นโยบาย</h2>
+  <div class="grid">
+    <div class="poster">นโยบาย 1</div>
+    <div class="poster">นโยบาย 2</div>
+    <div class="poster">นโยบาย 3</div>
+    <div class="poster">นโยบาย 4</div>
+    <div class="poster">นโยบาย 5</div>
+  </div>
+</section>
+
+<!-- ====== สมาชิกพรรค ====== -->
+<section>
+  <h2>สมาชิกพรรค</h2>
+
+  <!-- ===== สมาชิกหลัก คนที่ 1 ===== -->
+  <div class="member-main">
+    <div class="member-item">
+
+      <div class="flip-card" onclick="flip(this)">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <img src="สมาชิกพรรค/สมาชิก 1.png">
+          </div>
+          <div class="flip-back">
+            <img src="สมาชิกพรรค/สมาชิก 1_back.png">
+          </div>
+        </div>
+      </div>
+
+      <div class="member-name">
+        ผู้ลงสมัครตำแหน่ง นายกองค์การบริหาร
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== สมาชิกที่เหลือ ===== -->
+  <div class="member-grid">
+
+    <script>
+
+      const names = [
+        "",
+        "ผู้ลงสมัครตำแหน่งนายกองค์การบริหาร",
+        "ผู้ลงสมัครตำแหน่ง\nรองนายกองค์การบริหาร",
+        "ผู้ลงสมัครตำแหน่ง เลขานุการ",
+        "ผู้ลงสมัครตำแหน่ง เหรัญญิก",
+        "ผู้ลงสมัครตำแหน่ง\nรองนายกฝ่ายนิสิตสัมพันธ์",
+        "ผู้ลงสมัครตำแหน่ง\nรองนายกฝ่ายประกันคุณภาพ",
+        "ผู้ลงสมัครตำแหน่ง\nรองนายกฝ่ายกิจกรรมพิเศษ",
+        "ผู้ลงสมัครตำแหน่ง\nรองนายกฝ่ายทรัพยากรมนุษย์และภาพลักษณ์",
+        "ผู้ลงสมัครตำแหน่ง\nผู้ช่วยรองนายกฝ่ายทรัพยากรมนุษย์และภาพลักษณ์",
+        "ผู้ลงสมัครตำแหน่งผู้ช่วยเลขานุการ",
+        "ผู้ลงสมัครตำแหน่ง\nผู้ช่วยรองนายกฝ่ายกิจกรรมพิเศษ",
+        "ผู้ลงสมัครตำแหน่ง ผู้ช่วยเหรัญญิก"
+      ];
+
+      for(let i = 2; i <= 12; i++){
+        document.write(`
+          <div class="member-item">
+
+            <div class="flip-card" onclick="flip(this)">
+              <div class="flip-inner">
+                <div class="flip-front">
+                  <img src="สมาชิกพรรค/สมาชิก ${i}.png">
+                </div>
+                <div class="flip-back">
+                  <img src="สมาชิกพรรค/สมาชิก ${i}_back.png">
+                </div>
+              </div>
+            </div>
+
+            <div class="member-name">
+              ${names[i]}
+            </div>
+
+          </div>
+        `);
+      }
+
+    </script>
+
+  </div>
+</section>
+
+    </script>
+
+  </div>
+  
+</section>
+
+<section>
+  <div class="social-section">
+    <a href="https://www.instagram.com/kurise.kps?igsh=MTA2MTg0c3RmN2p0OA==" target="_blank" class="social-btn ig">
+        Instagram
+    </a>
+
+    <a href="https://www.tiktok.com/@ku.rise?_r=1&_t=ZS-93mbydHNeZ0" target="_blank" class="social-btn tiktok">
+        TikTok
+    </a>
+  </div>
+</section>
+
+<script>
+
+const scriptURL = "https://script.google.com/macros/s/AKfycbzirY2-BlTllAXXIg72AMz6rVuh8NZ-5D9Bs8-ggvO0pX-e79s9fmUOtMWScPwOdpwAVA/exec";
+
+
+async function sendComment() {
+
+  const comment = document.getElementById("comment").value;
+
+  if (!comment) {
+    alert("กรุณากรอกความคิดเห็นก่อนส่ง");
+    return;
+  }
+
+  const data = {
+    comment: comment
+  };
+
+  try {
+
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.result === "success") {
+      alert("ส่งความคิดเห็นสำเร็จ!");
+      document.getElementById("comment").value = "";
+    } else {
+      alert("เกิดข้อผิดพลาด: " + result.message);
+    }
+
+  } catch (err) {
+    alert("เชื่อมต่อระบบไม่สำเร็จ");
+    console.log(err);
+  }
+}
+
+function flip(card) {
+  card.querySelector('.flip-inner').classList.toggle('flipped');
+}
+
+
+</script>
+
+</body>
+</html>
