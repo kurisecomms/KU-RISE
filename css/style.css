@@ -68,6 +68,9 @@ section {
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+
 }
 
 /* ======== ส่วนช่องส่งความคิดเห็น ======== */
@@ -115,7 +118,7 @@ section {
 
 .bookshelf {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 15px;
   justify-items: center;
   margin-top: 20px;
@@ -195,16 +198,18 @@ section {
 .member-main {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .member-main .flip-card {
-  width: clamp(220px, 40vw, 380px);
+  width: clamp(300px, 40vw, 380px);
 }
 
 .member-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 10px;
+  margin-top: 20px;
 }
 
 .member-grid .flip-card {
