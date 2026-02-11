@@ -1,4 +1,9 @@
 /* ===== ตั้งค่าพื้นฐาน ===== */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,58 +17,59 @@ body {
   padding-bottom: 50px;
 }
 
-/* ===== Header ===== */
+/* ===== Header Responsive ===== */
+
 header {
   background-color: #1800ad;
   color: white;
-  padding: 20px;
+  padding: 15px 5%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  height: 60px;
-  width: auto;
-  display: block;
+  height: 50px;
+  max-width: 100%;
 }
 
-header h1 {
-  font-size: 28px;
-  margin-left: 10px;
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-  padding: 10px 16px;
-  border-radius: 20px;
-  background-color: white;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  background-color: white;
-}
-
-/* ===== Section ทั่วไป ===== */
-section {
-  max-width: 1100px;
-  margin: 30px auto;
+  color: #1800ad;
   background: white;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: clamp(14px, 2.5vw, 16px);
 }
 
-section h2 {
-  margin-bottom: 15px;
-  color: #0a3d3d;
-  text-align: center;
+/* มือถือ */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo {
+    height: 40px;
+  }
 }
 
-/* ===== ช่องส่งความคิดเห็น ===== */
+
+section {
+  width: 92%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
 /* ======== ส่วนช่องส่งความคิดเห็น ======== */
 
 .comment-section {
@@ -73,20 +79,19 @@ section h2 {
 
 .comment-box {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  max-width: 600px;
   gap: 10px;
-  margin-top: 10px;
+  margin: auto;
 }
 
 .comment-input {
-  width: 60%;
-  max-width: 500px;
+  width: 100%;
+  font-size: clamp(14px, 2.5vw, 16px);
   padding: 10px 15px;
   border-radius: 50px;
   border: 2px solid #1b5e20;
   outline: none;
-  font-size: 16px;
 }
 
 .send-btn {
@@ -106,61 +111,115 @@ section h2 {
 }
 
 
-/* ===== Grid นโยบาย ===== */
+/* ===== Bookshelf Responsive ===== */
 
-.grid {
+.bookshelf {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 15px;
-  margin-top: 15px;
+  justify-items: center;
+  margin-top: 20px;
 }
 
-.poster {
-  background: #eeeeee;
-  padding: 20px;
-  border-radius: 10px;
-  font-weight: bold;
+.book {
+  width: 100%;
+  max-width: 160px;
+  text-align: center;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.poster:hover {
-  background: #d7e6e6;
+.book img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;   /* ทำให้ไม่โดนตัด */
+  border-radius: 10px;
 }
 
-/* ===== สมาชิกพรรค ===== */
-
-.members-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 999;
+  text-align: center;
+  padding-top: 20px;
 }
 
-/* คนแรกอยู่ตรงกลาง */
+.reader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 85vh;
+}
+
+.reader-image {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.nav-btn {
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.page-number {
+  color: white;
+  margin-top: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
+
+.reader-image {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+/* ===== สมาชิกพรรค Responsive ===== */
+
 .member-main {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
 }
 
 .member-main .flip-card {
-  width: 400px;
-  height: auto;
+  width: clamp(220px, 40vw, 380px);
 }
 
-/* Grid ของสมาชิกที่เหลือ */
 .member-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
 }
 
 .member-grid .flip-card {
-  width: 260px;
-  height: auto;
+  width: 100%;
+  max-width: 260px;
 }
 
-/* ===== FLIP CARD ===== */
+.member-name {
+  font-size: clamp(12px, 2.5vw, 16px);
+}
+
+.member-item {
+  text-align: center;
+  margin-bottom: 5px;
+}
 
 .flip-card {
   width: 100%;
@@ -201,53 +260,6 @@ section h2 {
   transform: rotateY(180deg);
 }
 
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 1000px) {
-  .member-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 800px) {
-  .member-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .member-main .flip-card {
-    width: 260px;
-  }
-}
-
-@media (max-width: 500px) {
-  .member-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .member-main .flip-card {
-    width: 220px;
-  }
-}
-.member-item {
-  text-align: center;
-  margin-bottom: 5px;
-}
-
-.member-name {
-  margin-top: 0px;
-  padding-top: 0px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #0a3d0a;
-  line-height: 1.2;
-}
-
-@media (max-width: 768px) {
-  .member-name {
-    font-size: 14px;
-    margin-top: 2px;
-  }
-}
 
 /* ===== Social Section ===== */
 .social-section {
@@ -304,9 +316,15 @@ section h2 {
 /*หน้าลิงก์*/
 
 .link-section {
-  padding: 30px;
-  max-width: 1100px;
+  width: 92%;
+  max-width: 1200px;
   margin: auto;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 15px;
 }
 
 .category {
@@ -316,12 +334,6 @@ section h2 {
 .category h3 {
   margin-bottom: 15px;
   color: #2e7d32;
-}
-
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 15px;
 }
 
 .btn {

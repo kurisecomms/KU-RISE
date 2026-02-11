@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>KU RISE</title>
   <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -29,16 +31,58 @@
 </section>
 
 
-<section>
-  <h2>นโยบาย</h2>
-  <div class="grid">
-    <div class="poster">นโยบาย 1</div>
-    <div class="poster">นโยบาย 2</div>
-    <div class="poster">นโยบาย 3</div>
-    <div class="poster">นโยบาย 4</div>
-    <div class="poster">นโยบาย 5</div>
+<section id="policy-section">
+  <h2 style="text-align:center">📚 เล่มนโยบาย</h2>
+
+  <div id="popup" class="popup">
+
+    <span class="close" onclick="closePopup()">✖</span>
+
+    <div class="reader-container">
+
+        <button class="nav-btn" onclick="prevPage()">◀</button>
+
+        <img id="pageImage" class="reader-image" src="" onclick="imageClick(event)">
+
+        <button class="nav-btn" onclick="nextPage()">▶</button>
+
+    </div>
+
+    <p id="pageNum" class="page-number"></p>
+
   </div>
+
+  <div class="bookshelf">
+
+      <div class="book" onclick="openPopup(1)">
+          <img src="5 นโย/book1_page1.png">
+          <p>Rise For Welfare</p>
+      </div>
+
+      <div class="book" onclick="openPopup(2)">
+          <img src="5 นโย/book2_page1.png">
+          <p>Green Campus</p>
+      </div>
+
+      <div class="book" onclick="openPopup(3)">
+          <img src="5 นโย/book3_page1.png">
+          <p>Rise Society</p>
+      </div>
+
+      <div class="book" onclick="openPopup(4)">
+          <img src="5 นโย/book4_page1.png">
+          <p>Life Skill</p>
+      </div>
+
+      <div class="book" onclick="openPopup(5)">
+          <img src="5 นโย/book5_page1.png">
+          <p>Time To Chill</p>
+      </div>
+
+  </div>
+
 </section>
+
 
 <!-- ====== สมาชิกพรรค ====== -->
 <section>
@@ -177,8 +221,66 @@ function flip(card) {
   card.querySelector('.flip-inner').classList.toggle('flipped');
 }
 
+</script>
+
+<script>
+
+const folder = "5 นโย/";
+const totalPages = [8, 4, 4, 3, 5];
+
+let currentBook = 1;
+let currentPage = 1;
+
+function openPopup(bookNumber) {
+    currentBook = bookNumber;
+    currentPage = 1;
+
+    document.getElementById("popup").style.display = "block";
+    showPage();
+}
+
+function showPage() {
+    const img = document.getElementById("pageImage");
+
+    img.src = folder + "book" + currentBook + "_page" + currentPage + ".png";
+
+    document.getElementById("pageNum").innerText =
+        "หน้า " + currentPage + " / " + totalPages[currentBook - 1];
+}
+
+function nextPage() {
+    if (currentPage < totalPages[currentBook - 1]) {
+        currentPage++;
+        showPage();
+    }
+}
+
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        showPage();
+    }
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function imageClick(event) {
+
+    const img = event.target;
+    const clickX = event.offsetX;
+    const width = img.clientWidth;
+
+    if (clickX > width / 2) {
+        nextPage();   // คลิกฝั่งขวา = หน้าถัดไป
+    } else {
+        prevPage();   // คลิกฝั่งซ้าย = หน้าย้อนกลับ
+    }
+}
 
 </script>
+
 
 </body>
 </html>
