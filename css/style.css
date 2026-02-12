@@ -218,7 +218,7 @@ section {
 }
 
 .member-name {
-  font-size: clamp(12px, 2.5vw, 16px);
+  font-size: clamp(16px, 2.5vw, 20px);
 }
 
 .member-item {
